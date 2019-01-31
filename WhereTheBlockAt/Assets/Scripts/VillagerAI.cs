@@ -8,7 +8,6 @@ public class VillagerAI : MonoBehaviour {
 	#region Variables
 
 	public Transform[] points;
-	private int destPoint = 0;
 	private NavMeshAgent agent;
 
 	[SerializeField]
@@ -35,10 +34,6 @@ public class VillagerAI : MonoBehaviour {
 
 	private void GotoNextPosition()
 	{
-		if(nextPoint == null)
-		{
-			return;
-		}
 		nextPoint = new Vector3(Random.Range(minPosWorld.position.x, maxPosWorld.position.x), 0, Random.Range(minPosWorld.position.z, maxPosWorld.position.z));
 		agent.destination = nextPoint;
 	}
@@ -50,15 +45,13 @@ public class VillagerAI : MonoBehaviour {
 			GotoNextPosition();
 		}
 
-		Debug.Log(Vector3.Distance(lensShoot.hit.point, transform.position));
-
-		if (Vector3.Distance(lensShoot.hit.point, transform.position) < 100)
+		if (Vector3.Distance(lensShoot.hitpoint, transform.position) < 2)
 		{
-			agent.speed = 0;
+			agent.speed = 3.5f;
 		}
 		else
 		{
-			agent.speed = 0;
+			agent.speed = 2;
 		}
 	}
 

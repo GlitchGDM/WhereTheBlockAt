@@ -8,6 +8,8 @@ public class Shoot : MonoBehaviour {
 
 	public RaycastHit hit;
 
+	public Vector3 hitpoint;
+
 	#endregion
 
 	#region Unity Methods
@@ -21,6 +23,7 @@ public class Shoot : MonoBehaviour {
 	{
 		Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity);
 		Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
+		hitpoint = hit.point;
 		if (Input.GetButtonDown("Fire"))
 		{
 			if (hit.transform.gameObject.GetComponentInChildren<VillagerAI>().isTargetToKill)
@@ -28,7 +31,6 @@ public class Shoot : MonoBehaviour {
 				Destroy(hit.transform.parent.gameObject);
 			}
 		}
-		Debug.Log(hit.point);
 	}
 
 	#endregion
