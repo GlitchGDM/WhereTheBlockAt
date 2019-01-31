@@ -135,7 +135,7 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 	public override void Awake()
 	{
 		base.Awake();
-
+		Debug.Log("Hola");
 		backgroundMusic = CreateAudioSource("MusicSource", true);
 		soundsFx = CreateAudioSource("AudioSource", false);
 
@@ -150,6 +150,7 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 		for (int i = 0; i < musicSoundVector.Length; i++)
 		{
 			menuSoundsDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
+			
 		}
 
 		musicSoundVector = Resources.LoadAll<AudioClip>(AppPaths.Path_Music_Menu);
@@ -157,6 +158,7 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 		for (int i = 0; i < musicSoundVector.Length; i++)
 		{
 			menuMusicDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
+			Debug.Log(i);
 		}
 
 	}

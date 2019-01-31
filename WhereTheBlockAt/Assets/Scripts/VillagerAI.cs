@@ -29,6 +29,7 @@ public class VillagerAI : MonoBehaviour {
 		lensShoot = lens.GetComponent<Shoot>();
 		agent = GetComponent<NavMeshAgent>();
 		agent.autoBraking = false;
+
 		GotoNextPosition();
 	}
 

@@ -24,7 +24,7 @@ public class Shoot : MonoBehaviour {
 		Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity);
 		Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
 		hitpoint = hit.point;
-		if (Input.GetButtonDown("Fire"))
+		if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.tag == "Villager")
 		{
 			if (hit.transform.gameObject.GetComponentInChildren<VillagerAI>().isTargetToKill)
 			{
