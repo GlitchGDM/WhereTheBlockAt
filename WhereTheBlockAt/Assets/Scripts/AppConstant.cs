@@ -19,16 +19,18 @@ public class AppPlayerPrefsValues
 public class AppPaths
 {
 	public static readonly string Persistant_Data = Application.persistentDataPath;
-	public static readonly string Path_Sounds_Menu = "Audio/Menu/Sounds/";
-	public static readonly string Path_Music_Menu = "Audio/Menu/Music/";
+	public static readonly string Path_Sounds = "Audio/Sounds/";
+	public static readonly string Path_Music = "Audio/Music/";
 }
 
 public class AppMusic
 {
 	public static readonly string MainMenu_Music = "MainMenuSong";
+	public static readonly string Game_Music = "Village";
 }
 
 public class AppSounds
 {
 	public static readonly string Button_Sound = "ButtonSound";
+	public static readonly string Shoot_Sound = "Laser Gun Sound Effect";
 }

@@ -10,8 +10,8 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 
 	private float sfxVol = 0.5f;
 
-	private Dictionary<string, AudioClip> menuSoundsDictionary = null;
-	private Dictionary<string, AudioClip> menuMusicDictionary = null;
+	private Dictionary<string, AudioClip> soundsDictionary = null;
+	private Dictionary<string, AudioClip> musicDictionary = null;
 
 	private AudioSource backgroundMusic;
 	private AudioSource soundsFx;
@@ -87,9 +87,9 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 
 	public void PlayBackgroundMusic(string songName)
 	{
-		if (menuMusicDictionary.ContainsKey(songName))
+		if (musicDictionary.ContainsKey(songName))
 		{
-			backgroundMusic.clip = menuMusicDictionary[songName];
+			backgroundMusic.clip = musicDictionary[songName];
 			backgroundMusic.volume = musicVol;
 			backgroundMusic.Play();
 		}
@@ -97,9 +97,9 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 
 	public void PlaySound(string audioName)
 	{
-		if (menuMusicDictionary.ContainsKey(audioName))
+		if (soundsDictionary.ContainsKey(audioName))
 		{
-			soundsFx.clip = menuSoundsDictionary[audioName];
+			soundsFx.clip = soundsDictionary[audioName];
 			soundsFx.volume = sfxVol;
 			soundsFx.Play();
 		}
@@ -139,26 +139,24 @@ public class MusicManager : PersistentSingleton<MusicManager> {
 		backgroundMusic = CreateAudioSource("MusicSource", true);
 		soundsFx = CreateAudioSource("AudioSource", false);
 
-		menuSoundsDictionary = new Dictionary<string, AudioClip>();
-		menuMusicDictionary = new Dictionary<string, AudioClip>();
+		soundsDictionary = new Dictionary<string, AudioClip>();
+		musicDictionary = new Dictionary<string, AudioClip>();
 
 		MusicVolume = PlayerPrefs.GetFloat(AppPlayerPrefsValues.Music_Volume,0.5f);
 		SfxVolume = PlayerPrefs.GetFloat(AppPlayerPrefsValues.Sfx_Volume, 0.5f);
 
-		AudioClip[] musicSoundVector = Resources.LoadAll<AudioClip>(AppPaths.Path_Sounds_Menu);
+		AudioClip[] musicSoundVector = Resources.LoadAll<AudioClip>(AppPaths.Path_Sounds);
 
 		for (int i = 0; i < musicSoundVector.Length; i++)
 		{
-			menuSoundsDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
-			
+			soundsDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
 		}
 
-		musicSoundVector = Resources.LoadAll<AudioClip>(AppPaths.Path_Music_Menu);
+		musicSoundVector = Resources.LoadAll<AudioClip>(AppPaths.Path_Music);
 
 		for (int i = 0; i < musicSoundVector.Length; i++)
 		{
-			menuMusicDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
-			Debug.Log(i);
+			musicDictionary.Add(musicSoundVector[i].name, musicSoundVector[i]);
 		}
 
 	}

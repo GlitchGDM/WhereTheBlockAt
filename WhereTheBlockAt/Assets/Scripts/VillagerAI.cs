@@ -39,6 +39,12 @@ public class VillagerAI : MonoBehaviour {
 		agent.destination = nextPoint;
 	}
 
+	private void GotoNextClosePosition()
+	{
+		nextPoint = new Vector3((Random.insideUnitCircle * 5).x, 0, (Random.insideUnitCircle * 5).y);
+		agent.destination = nextPoint;
+	}
+
 	void Update () 
 	{
 		if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -46,13 +52,18 @@ public class VillagerAI : MonoBehaviour {
 			GotoNextPosition();
 		}
 
-		if (Vector3.Distance(lensShoot.hitpoint, transform.position) < 2)
+		if (lensShoot.justShot)
 		{
-			agent.speed = 3.5f;
+			agent.speed = 8f;
+		}
+		else if (Vector3.Distance(lensShoot.hitpoint, transform.position) < 2 && isTargetToKill)
+		{
+			agent.speed = 2f;
 		}
 		else
 		{
-			agent.speed = 2;
+			agent.speed = 1;
+			
 		}
 	}
 
